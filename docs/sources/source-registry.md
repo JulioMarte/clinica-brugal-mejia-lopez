@@ -9,23 +9,18 @@ Before launch, time-sensitive operational information should be replaced or conf
 ## Source classification
 
 ### Primary institutional
-
 Content published by the clinic or a directly associated medical unit.
 
 ### Government / official business
-
 Public Dominican government or chamber records.
 
 ### Independent press
-
 News or editorial coverage not controlled by the clinic.
 
 ### Third-party directory
-
 Insurance, physician, tourism, or business directories.
 
 ### Social
-
 Public clinic or associated-unit social accounts. Useful for chronology and recent service announcements, but subject to staleness and platform limitations.
 
 ---
@@ -36,18 +31,9 @@ Public clinic or associated-unit social accounts. Useful for chronology and rece
 
 **Type:** Primary institutional
 
-**Used for:**
+**Used for:** current identity, tagline, emergency/24-hour messaging, highlighted services, public contact information, and current positioning.
 
-- current identity;
-- tagline;
-- emergency/24-hour messaging;
-- highlighted services;
-- public contact information;
-- general current positioning.
-
-**Limitations:**
-
-The site contains contradictory historical dates and should not be treated as an unquestioned source for institutional history.
+**Limitations:** contains contradictory historical dates and should not be treated as an unquestioned source for institutional history.
 
 ---
 
@@ -57,20 +43,9 @@ The site contains contradictory historical dates and should not be treated as an
 
 **Type:** Primary institutional
 
-**Used for:**
+**Used for:** philosophy, mission, vision, values, leadership, 2001 Mejía-López transition narrative, history as told by the institution, and the embedded institutional YouTube video.
 
-- philosophy;
-- mission;
-- vision;
-- values;
-- leadership/organizational information;
-- 2001 Mejía-López transition narrative;
-- history as told by the institution;
-- embedded institutional YouTube video.
-
-**Limitations:**
-
-Contains historical claims requiring external or internal documentary validation.
+**Limitations:** historical claims require external or internal documentary validation.
 
 ---
 
@@ -80,16 +55,9 @@ Contains historical claims requiring external or internal documentary validation
 
 **Type:** Primary institutional
 
-**Used for:**
+**Used for:** specialties, international-patient services, and current public service descriptions.
 
-- services;
-- specialties;
-- international-patient service descriptions;
-- current public offering.
-
-**Limitations:**
-
-Service availability, schedules, doctors, and insurance coverage can change. Confirm before production launch.
+**Limitations:** service availability, schedules, doctors, and insurance coverage can change. Confirm before production launch.
 
 ---
 
@@ -99,17 +67,9 @@ Service availability, schedules, doctors, and insurance coverage can change. Con
 
 **Type:** Official/business registry
 
-**Used for:**
+**Used for:** public business presence, address, telephone, commercial contact data, and logo/reference imagery.
 
-- public business presence;
-- address;
-- telephone;
-- commercial contact data;
-- logo/reference imagery.
-
-**Limitations:**
-
-Directory contact fields can become stale. Prefer client-confirmed NAP for final launch.
+**Limitations:** directory contact fields can become stale. Prefer client-confirmed NAP for final launch.
 
 ---
 
@@ -119,15 +79,9 @@ Directory contact fields can become stale. Prefer client-confirmed NAP for final
 
 **Type:** Government / official
 
-**Used for:**
+**Used for:** confirming the legal entity name, RNC context, and electronic-invoicing contributor context.
 
-- confirming the legal entity name;
-- RNC context;
-- evidence of inclusion in electronic-invoicing contributor lists.
-
-**Limitations:**
-
-Use only the specific official record relevant to the legal entity. Tax classification is not a marketing claim.
+**Limitations:** tax classification is not a marketing claim.
 
 ---
 
@@ -137,14 +91,9 @@ Use only the specific official record relevant to the legal entity. Tax classifi
 
 **Type:** Third-party/local information source
 
-**Used for:**
+**Used for:** cross-checking that Brugal is publicly listed as a Puerto Plata medical center, with laboratory testing, MRI, and broad specialty coverage.
 
-- additional service inventory;
-- cross-checking emergency and diagnostic services.
-
-**Limitations:**
-
-Not a substitute for the clinic’s current operational catalog.
+**Critical limitation / correction:** the long detailed service list on this page — including CT, X-ray, mammography, bariatric surgery, endoscopy, stress testing, home sampling, and other items — belongs to **Bournigal Medical Center**, not Clínica Brugal. Do not attribute that list to Brugal.
 
 ---
 
@@ -152,21 +101,11 @@ Not a substitute for the clinic’s current operational catalog.
 
 **Base domain:** https://acento.com.do/
 
-Relevant research included articles about Dr. Francisco “Panchito” Brugal and other historical physicians associated with Puerto Plata.
-
 **Type:** Independent press/editorial history
 
-**Used for:**
+**Used for:** Dr. Panchito Brugal biographical chronology, early medical career, 1940s clinical association, 1952 clinic history, and historical physicians associated with Puerto Plata.
 
-- Dr. Panchito Brugal biographical chronology;
-- medical graduation and early professional history;
-- 1940s clinical association;
-- 1952 clinic history;
-- historical medical figures associated with Clínica Brugal.
-
-**Limitations:**
-
-Historical journalism should be cross-checked against archival or institutional documents before finalizing a legal/official foundation date.
+**Limitations:** historical journalism should be cross-checked against archival or institutional documents before finalizing an official foundation date.
 
 ---
 
@@ -176,16 +115,9 @@ Historical journalism should be cross-checked against archival or institutional 
 
 **Type:** Local historical/editorial source
 
-**Used for:**
+**Used for:** local memory of Dr. Panchito Brugal, historical clinic naming, community reputation, and 1944/1952 chronology cross-checking.
 
-- local memory of Dr. Panchito Brugal;
-- historical clinic naming;
-- community reputation;
-- 1944/1952 chronology cross-checking.
-
-**Limitations:**
-
-Use as historical evidence, not as the sole basis for legal institutional claims.
+**Limitations:** use as historical evidence, not as the sole basis for legal institutional claims.
 
 ---
 
@@ -195,14 +127,9 @@ Use as historical evidence, not as the sole basis for legal institutional claims
 
 **Type:** Independent press
 
-**Used for:**
+**Used for:** external documentation of the 2020 permanent dual-chamber pacemaker procedure and cardiovascular milestone narrative.
 
-- external documentation of the 2020 permanent dual-chamber pacemaker procedure;
-- cardiovascular milestone narrative.
-
-**Limitations:**
-
-The exact wording “first” should be represented only within the scope stated by the source, not broadened into a national or regional claim without evidence.
+**Limitations:** represent “first” only within the scope explicitly stated by the source. Do not broaden it into a national or regional claim without evidence.
 
 ---
 
@@ -212,11 +139,7 @@ The exact wording “first” should be represented only within the scope stated
 
 **Type:** Independent press
 
-**Used for:**
-
-- cross-checking the 2020 cardiovascular procedure;
-- identifying members of the reported medical team;
-- contextualizing Dr. Eliany Mejía López’s cardiovascular work.
+**Used for:** cross-checking the 2020 cardiovascular procedure, identifying reported team members, and contextualizing Dr. Eliany Mejía López’s cardiovascular work.
 
 ---
 
@@ -226,14 +149,9 @@ The exact wording “first” should be represented only within the scope stated
 
 **Type:** Third-party insurer/provider directory
 
-**Used for:**
+**Used for:** evidence that Melosa Clínica Brugal SRL appears in an international insurance/provider context.
 
-- evidence that Melosa Clínica Brugal SRL appears in an international insurance/provider context;
-- support for the international-patient positioning.
-
-**Known issue:**
-
-Third-party directory location fields may be inconsistent. Never override the clinic’s verified Puerto Plata address with an erroneous third-party city field.
+**Known issue:** third-party location fields may be inconsistent. Never override the clinic’s verified Puerto Plata address with an erroneous third-party city field.
 
 ---
 
@@ -243,16 +161,9 @@ Third-party directory location fields may be inconsistent. Never override the cl
 
 **Type:** Independent international press
 
-**Used for:**
+**Used for:** external observation of the clinic, international/Canadian patient context, visual evidence of facilities at the time of reporting, and evidence that foreign-patient care is an actual operational use case.
 
-- external observation of the clinic;
-- international/Canadian patient context;
-- visual evidence of facilities at the time of reporting;
-- evidence that foreign-patient care is an actual operational use case.
-
-**Limitations:**
-
-Patient-volume figures reported for one period are historical observations, not permanent KPIs.
+**Limitations:** patient-volume figures reported for one period are historical observations, not permanent KPIs.
 
 ---
 
@@ -264,13 +175,9 @@ A 2025 municipal document reviewed during research referenced an annex of a two-
 
 **Type:** Government / municipal documentation
 
-**Used for:**
+**Used for:** evidence of recent physical-expansion activity.
 
-- evidence of recent physical expansion activity.
-
-**Limitations:**
-
-A permit/reference does not by itself confirm construction completion or current use. Verify with the client.
+**Limitations:** a permit/reference does not by itself confirm construction completion or current use. Verify with the client.
 
 ---
 
@@ -280,15 +187,9 @@ A permit/reference does not by itself confirm construction completion or current
 
 **Type:** Institutional/legacy web presence
 
-**Used for:**
+**Used for:** evidence of additional institutional digital properties and cardiovascular scientific-content references such as ACC LATAM 2024 material.
 
-- evidence of additional institutional digital properties;
-- cardiovascular scientific-content references;
-- ACC LATAM 2024 material.
-
-**Limitations:**
-
-This contributes to digital fragmentation. The future canonical site should consolidate institutional authority rather than preserve multiple competing public websites.
+**Limitations:** this contributes to digital fragmentation. The future canonical site should consolidate institutional authority.
 
 ---
 
@@ -298,16 +199,9 @@ This contributes to digital fragmentation. The future canonical site should cons
 
 **Type:** Associated physician site
 
-**Used for:**
+**Used for:** professional biography, cardiovascular/electrophysiology context, clinic association, and specialist-profile research.
 
-- professional biography;
-- cardiovascular/electrophysiology context;
-- clinic association;
-- specialist profile research.
-
-**Limitations:**
-
-Physician-specific information does not automatically represent the clinic as a whole.
+**Limitations:** physician-specific information does not automatically represent the clinic as a whole.
 
 ---
 
@@ -317,17 +211,9 @@ Physician-specific information does not automatically represent the clinic as a 
 
 **Type:** Social / institutional
 
-**Used for:**
+**Used for:** current visual language, service announcements, pediatric-emergency material, recent institutional activity, and chronology clues.
 
-- current visual language;
-- service announcements;
-- pediatric emergency material;
-- recent institutional activity;
-- chronology clues.
-
-**Limitations:**
-
-Social posts can become stale and are not ideal as the sole evidence for permanent operational claims.
+**Limitations:** social posts can become stale and are not ideal as the sole evidence for permanent operational claims.
 
 ---
 
@@ -337,13 +223,7 @@ Social posts can become stale and are not ideal as the sole evidence for permane
 
 **Type:** Social / institutional
 
-**Used for:**
-
-- service announcements;
-- insurance communication;
-- institutional chronology;
-- laboratory communication;
-- visual/history clues.
+**Used for:** service announcements, insurance communication, institutional chronology, laboratory communication, and visual/history clues.
 
 ---
 
@@ -353,10 +233,7 @@ Social posts can become stale and are not ideal as the sole evidence for permane
 
 **Type:** Associated unit / social
 
-**Used for:**
-
-- understanding the cardiovascular sub-brand relationship;
-- public communication of specialized cardiovascular services.
+**Used for:** understanding the cardiovascular sub-brand relationship and public communication of specialized cardiovascular services.
 
 ---
 
@@ -366,10 +243,7 @@ Social posts can become stale and are not ideal as the sole evidence for permane
 
 **Type:** Public institutional media
 
-**Used for:**
-
-- current brand mockup;
-- historical/institutional media reference.
+**Used for:** current brand mockup and historical/institutional media reference.
 
 The current institutional history page publicly embeds this video.
 
@@ -381,17 +255,9 @@ Research also used physician-directory entries such as BuscaMed to identify poss
 
 **Type:** Third-party directory
 
-**Use only for:**
+**Use only for:** discovery, cross-checking, and locating candidate doctors for client confirmation.
 
-- discovery;
-- cross-checking;
-- locating candidate doctors for client confirmation.
-
-**Do not use as final source for:**
-
-- current employment/affiliation;
-- current schedule;
-- universal clinic insurance coverage.
+**Do not use as final source for:** current employment/affiliation, current schedule, or universal clinic insurance coverage.
 
 ---
 
