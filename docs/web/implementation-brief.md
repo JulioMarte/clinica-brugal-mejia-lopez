@@ -1,24 +1,91 @@
 # Web Implementation Brief — Melosa Clínica Brugal
 
+Status: **implementation specification**
+
 ## 1. Objective
 
-Translate the documented brand into a fast, accessible, maintainable medical website that prioritizes patient tasks and uses structured content instead of duplicated page copy.
+Build a fast, accessible, maintainable medical website for Melosa Clínica Brugal.
 
-This document is framework-agnostic. The implementation team can later select the framework and CMS based on hosting, editing, localization, forms, and operational requirements.
+The site must prioritize patient tasks and render structured content without duplicated page copy.
 
-## 2. Product priorities
+## 2. Canonical architecture
+
+The architecture is no longer framework-agnostic.
+
+Use:
+
+- **Site Foundry** for shared site compilation and orchestration;
+- **Astro** for static rendering;
+- **Directus** for structured content and editorial workflow;
+- **Cloudflare** for static deployment and edge delivery;
+- **R2 or equivalent object storage** for managed media when configured.
+
+Read these contracts before implementation:
+
+- `../architecture/site-foundry-integration.md`
+- `../architecture/directus-content-model.md`
+- `../architecture/page-rendering-contract.md`
+- `../architecture/navigation-contract.md`
+- `../architecture/publishing-workflow.md`
+
+Architecture contracts override older examples or mockups when conflicts exist.
+
+## 3. Product priorities
 
 The interface must make these tasks easy:
 
 1. Find a doctor.
 2. Find a specialty or service.
-3. Book an appointment.
-4. Call emergency care.
+3. Book or request an appointment.
+4. Contact emergency care.
 5. Get directions.
 
-Do not optimize the first screen primarily for company history or marketing campaigns.
+Do not optimize the first screen primarily for company history or campaigns.
 
-## 3. Component hierarchy
+## 4. Rendering principles
+
+Use reusable Astro page contracts.
+
+Do not create one page file per CMS record.
+
+Render CMS entities through canonical page types:
+
+- home;
+- doctor;
+- specialty;
+- service;
+- procedure;
+- patient information;
+- emergency;
+- location;
+- article;
+- institutional;
+- contact.
+
+Use Astro islands only when an interaction requires client-side JavaScript.
+
+Keep crawlable content statically rendered.
+
+## 5. Protected shell
+
+The codebase owns:
+
+- document semantics;
+- header mechanics;
+- navigation mechanics;
+- footer mechanics;
+- design tokens;
+- accessibility primitives;
+- metadata primitives;
+- structured-data mapping;
+- error handling;
+- security-sensitive form behavior.
+
+Directus can configure approved content fields and allowlisted blocks.
+
+Directus must not inject arbitrary executable code.
+
+## 6. Component hierarchy
 
 ### Foundations
 
@@ -65,69 +132,91 @@ Do not optimize the first screen primarily for company history or marketing camp
 - MapSection
 - Footer
 
-### Page patterns
+Build and validate reusable primitives before scaling page count.
 
-- homepage;
-- doctor profile;
-- specialty;
-- service/procedure;
-- emergency;
-- international patient;
-- history;
-- article;
-- contact/location.
+## 7. Content model
 
-Build and validate primitives before producing dozens of content pages.
+Use normalized Directus entities.
 
-## 4. Suggested content entities
+Primary logical collections include:
 
 ```text
-Brand
-Locations
-Departments
+Sites
+Pages
 Doctors
 Specialties
 Services
+Procedures
+Locations
 InsuranceProviders
-ContactChannels
-Leadership
-HistoricalEvents
+NavigationMenus
+NavigationItems
+SEOMetadata
 MediaAssets
 Articles
 FAQs
 ```
 
-Do not hardcode the same doctor, telephone, insurance, or service information independently across multiple pages.
+Do not hardcode the same doctor, phone, schedule, insurance, service, or address independently across pages.
 
-## 5. Status and provenance
+## 8. Provenance and status
 
-Important operational entities should support metadata such as:
+Operational and medical records must support separate verification and publication state.
+
+Minimum model:
 
 ```yaml
-status: verified | needs_review | historical | deprecated
-last_verified_at: YYYY-MM-DD
+verification_status: verified | needs_review | historical | deprecated
+source_type: client | official_record | official_web | legacy_web | external_directory | research | editorial
+source_url: optional
+source_id: optional
+last_verified_at: optional
 verified_by: optional
-source: optional
+review_due_at: optional
+medical_review_required: true | false
+medical_reviewer: optional
+publication_status: draft | medical_review | institutional_review | approved | published | archived
 ```
 
-This is important for:
+Do not treat `published` as proof that time-sensitive information remains current forever.
 
-- doctors;
-- schedules;
-- insurance;
-- contacts;
-- services;
-- historical claims.
+## 9. Editorial permissions
 
-## 6. Homepage interaction model
+The LLM is a constrained draft editor.
 
-### Desktop header
+It can create and modify permitted drafts.
 
-Left:
+It cannot:
 
-- primary logo lockup.
+- publish;
+- approve;
+- modify protected schema;
+- change roles or permissions;
+- delete published records;
+- bypass medical review.
 
-Primary navigation:
+Human approval is mandatory for production publication.
+
+## 10. Navigation
+
+Navigation membership is independent from page existence.
+
+A page can be indexable without appearing in the primary menu.
+
+Support:
+
+- primary menu;
+- utility menu;
+- footer menu;
+- nested submenus up to the validated depth in the navigation contract.
+
+High-intent actions such as emergency and appointments can render separately from ordinary navigation.
+
+## 11. Homepage interaction model
+
+### Desktop
+
+Primary semantic navigation starts with:
 
 - Médicos
 - Especialidades
@@ -135,21 +224,18 @@ Primary navigation:
 - Pacientes
 - Nosotros
 
-Right:
+High-intent actions:
 
-- Emergencia 24/7
+- Emergencia
 - Agendar cita
 
 ### Mobile
 
-Keep at least two high-intent actions close to the thumb:
+Keep call/emergency and appointment actions easy to reach.
 
-- Llamar
-- Agendar cita
+Do not force emergency contact through a menu.
 
-Do not force a patient to open the navigation menu to call the clinic.
-
-## 7. Accessibility
+## 12. Accessibility
 
 Target **WCAG 2.2 AA**.
 
@@ -165,13 +251,13 @@ Required engineering considerations:
 - labels tied to form controls;
 - useful error messages;
 - sufficient color contrast;
-- adequate touch target sizes;
+- adequate touch targets;
 - reduced-motion support;
-- captions/transcripts for important video content where needed;
-- alt text based on image purpose;
+- captions or transcripts for important video when needed;
+- purpose-based alt text;
 - no information conveyed only through color.
 
-## 8. Focus pattern
+## 13. Focus pattern
 
 Working pattern:
 
@@ -182,147 +268,127 @@ Working pattern:
 }
 ```
 
-Adapt to component boundaries without removing visible focus.
+Do not remove visible focus.
 
-## 9. Motion
+## 14. Motion
 
-Include:
-
-```css
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-```
+Include reduced-motion behavior.
 
 Do not depend on animation to reveal medically important information.
 
-## 10. Performance budgets
+## 15. Performance budgets
 
 Aim for strong Core Web Vitals on representative mobile devices.
 
-Practical targets:
+Targets:
 
-- LCP around or below 2.5 seconds at the 75th percentile;
-- INP around or below 200 ms;
+- LCP at or below 2.5 seconds at the 75th percentile;
+- INP at or below 200 ms;
 - CLS at or below 0.1;
 - minimal blocking JavaScript;
-- optimized critical images;
-- stable image dimensions;
-- minimal third-party scripts.
+- optimized critical media;
+- stable dimensions;
+- minimal third-party code.
 
-## 11. Images
+## 16. Images and media
 
-Use:
+Use responsive formats and explicit dimensions.
 
-- responsive `srcset`/`sizes`;
-- AVIF/WebP where supported by the pipeline;
-- explicit width/height or aspect ratio;
-- lazy loading below the fold;
-- eager loading only for true LCP candidates;
-- meaningful alt text.
+Prefer AVIF/WebP when supported.
 
-Do not ship multi-megabyte hero images.
+Lazy-load below-fold media.
 
-## 12. Video
+Do not ship oversized hero assets.
 
-For non-critical institutional video:
+Each managed media record should support:
 
-- render a poster first;
-- load/embed on interaction or when near viewport;
-- avoid heavy autoplay on mobile;
-- mute autoplay when used;
-- respect reduced motion;
-- do not allow video to block primary content rendering.
+- source;
+- ownership/license;
+- stock status;
+- consent status when applicable;
+- alt text;
+- replacement requirement;
+- related entity.
 
-The current brand mockup embeds a public institutional YouTube video for demonstration. Production should consider a privacy-conscious/lazy embed pattern.
+Stock assets must never impersonate real clinic facilities, equipment, or staff.
 
-## 13. Fonts
+## 17. Fonts
 
-Preferred working families:
+Working families:
 
 - Manrope for headings;
 - Source Sans 3 for body/interface.
 
-Production preference:
+Prefer self-hosted WOFF2, required weights only, and `font-display: swap`.
 
-- self-host WOFF2;
-- Latin subset;
-- only required weights;
-- `font-display: swap`;
-- preload only the truly critical font files.
+## 18. Structured data
 
-## 14. Structured data
+Generate structured data from normalized verified entities.
 
-Evaluate and implement valid Schema.org markup for relevant entities.
+Evaluate relevant types such as:
 
-Priority types/patterns:
+- `MedicalClinic`;
+- `Organization`;
+- `Physician`;
+- `BreadcrumbList`;
+- `WebSite`;
+- relevant medical types when valid.
 
-- `MedicalClinic`
-- `Organization`
-- `Physician`
-- `MedicalSpecialty`
-- `MedicalProcedure` where appropriate
-- `FAQPage` only where content and search-engine policy justify it
-- `BreadcrumbList`
-- `WebSite`
+Do not accept arbitrary JSON-LD from editors.
 
-Schema must reflect visible, verified page content. Never invent credentials, ratings, business hours, or services for markup.
+Never invent credentials, ratings, hours, or services for schema.
 
-## 15. SEO technical baseline
+## 19. SEO technical baseline
 
 Implement:
 
 - canonical URLs;
 - XML sitemap;
 - robots controls;
-- descriptive titles and meta descriptions;
+- descriptive titles and descriptions;
 - Open Graph metadata;
 - crawlable internal links;
 - breadcrumbs;
-- one clear H1 per page pattern;
+- one clear H1 per page contract;
 - language attributes;
-- hreflang when multilingual versions exist;
+- hreflang when validated translations exist;
 - structured data;
-- clean status codes and redirects;
+- clean status codes;
+- redirect history for changed public slugs;
 - no duplicate legacy domains serving canonical copies.
 
-## 16. Internationalization
+Canonical URL patterns are defined in `page-rendering-contract.md`.
 
-Design content models for multilingual fields before translating.
+## 20. Internationalization
 
-Recommended sequence:
+Spanish is the source locale.
 
-1. Spanish production source.
-2. English reviewed translation.
-3. French only after operational validation.
+English is the first reviewed secondary locale.
 
-Do not concatenate translation into arbitrary HTML fields that become difficult to maintain.
+Evaluate French only after operational validation.
 
-## 17. Forms and privacy
+Do not publish unreviewed machine-translated medical copy.
 
-Appointment forms should minimize collected data.
+## 21. Forms and privacy
 
-Do not collect detailed health history through a generic form unless there is a defined legal, security, operational, and privacy requirement.
+Appointment forms should collect minimal administrative data.
+
+Do not collect detailed health history through a generic public form without a defined legal, security, operational, and privacy requirement.
 
 At minimum:
 
-- encrypt transport with HTTPS;
-- validate server-side;
-- protect against abuse/spam;
-- define retention;
-- log administrative events without exposing medical details;
-- avoid putting sensitive values in analytics URLs or client-side logs.
+- HTTPS;
+- server-side validation;
+- abuse protection;
+- retention policy;
+- privacy review;
+- no sensitive values in analytics URLs or logs.
 
-## 18. Analytics
+## 22. Analytics
 
-Track patient-intent actions, not vanity events only.
+Track patient-intent actions.
 
-Recommended event names:
+Recommended events:
 
 ```text
 appointment_click
@@ -339,115 +405,90 @@ insurance_view
 international_patient_contact
 ```
 
-Do not send medical condition, form free-text, or sensitive patient data to general analytics platforms.
+Never send diagnosis, condition, free-text medical messages, or sensitive patient data to general analytics systems.
 
-## 19. Search
+## 23. Search
 
-The doctor/specialty search should support useful patient language.
-
-Initial filters:
+Initial doctor/specialty search can filter by:
 
 - doctor name;
 - specialty;
-- sub-specialty;
+- subspecialty;
 - insurance;
 - language;
-- location/building if relevant.
+- location when relevant.
 
-A symptom-oriented discovery layer can be evaluated later but requires medical governance to avoid unsafe self-triage behavior.
+Symptom-oriented discovery requires separate medical governance.
 
-## 20. Maps
+## 24. Publishing and build lifecycle
 
-Location pages should expose:
+Use the workflow defined in `publishing-workflow.md`.
 
-- official address;
-- entrance information;
-- emergency entrance if distinct;
-- phone;
-- directions link;
-- map;
-- parking/access notes after validation.
-
-Avoid loading a heavy interactive map before the user needs it if it harms performance.
-
-## 21. Media governance
-
-Every image/video asset should carry metadata for:
-
-- source;
-- license/ownership;
-- stock vs real;
-- alt text;
-- subject consent where required;
-- replacement requirement;
-- associated service/location/person.
-
-## 22. Stock asset contract
-
-During prototyping:
-
-```yaml
-asset_type: stock
-replacement_required: true
-```
-
-Production must never imply that a stock image shows an actual clinic room, machine, or staff member.
-
-## 23. Content review workflow
-
-Recommended status pipeline:
+Production publication flow:
 
 ```text
-draft → medical_review → institutional_review → approved → published → review_due
+human-approved Directus publication
+→ authenticated trigger
+→ Site Foundry site selection
+→ coherent published snapshot
+→ content graph validation
+→ Astro build
+→ quality gates
+→ deployment
+→ post-deploy checks
 ```
 
-Historical claims can require an additional documentation review.
+Fail closed.
 
-## 24. Security baseline
+Never replace the last known-good deployment with a failed or invalid build.
 
-For the public site:
+## 25. Security baseline
 
 - dependency updates;
 - secure headers;
 - CSP where feasible;
 - no secrets in client bundles;
 - protected form endpoints;
-- CSRF protections where relevant;
-- rate limiting/abuse protection;
-- server-side input validation;
-- least-privilege CMS roles;
-- audit trail for content changes;
-- backup/restore strategy.
+- CSRF protection where relevant;
+- rate limiting and abuse protection;
+- server-side validation;
+- least-privilege Directus roles;
+- audit trail;
+- authenticated build triggers;
+- backup and rollback strategy.
 
-## 25. Medical-risk principle
+## 26. Medical-risk principle
 
-The website is not a diagnostic engine. Avoid designs that can be interpreted as giving a diagnosis or guaranteeing treatment outcomes.
+The website is not a diagnostic engine.
 
-Emergency guidance should tell users how to contact care, not attempt to replace professional emergency assessment.
+Do not design content that guarantees outcomes or replaces professional assessment.
 
-## 26. Production readiness checklist
+Emergency guidance must route users to care instead of attempting self-triage.
+
+## 27. Production readiness
 
 Before launch confirm:
 
-- official domain and canonical strategy;
-- NAP information;
+- canonical domain;
+- canonical public naming;
+- NAP;
 - doctor roster;
 - service roster;
 - schedules;
 - insurance;
 - legal/privacy copy;
-- emergency phone and route;
+- emergency contact and route;
 - approved logos;
-- final photography;
+- final photography or clearly marked provisional stock;
 - translations;
 - analytics privacy review;
 - structured-data validation;
 - accessibility audit;
 - performance audit;
 - 404/500 behavior;
-- backup and rollback;
-- redirects from legacy URLs.
+- build rollback;
+- redirect migration.
 
-## 27. Developer north star
+## 28. Developer north star
 
-A patient should be able to understand who the clinic is, find the relevant care path, and take the next action without learning the organization’s internal structure.
+A patient must understand the clinic, find the right care path, and take the next action without learning the institution's internal structure.
