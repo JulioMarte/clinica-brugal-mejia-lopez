@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { siteConfig } from '../../config/site';
+---
+
+<BaseLayout title="Emergencia 24/7" description="Información de emergencia de Melosa Clínica Brugal en Puerto Plata.">
+  <section class="section emergency">
+    <div class="container emergency-inner">
+      <p class="eyebrow">Atención inmediata</p>
+      <h1>Emergencia 24/7</h1>
+      <p>Comunícate con la clínica o consulta la dirección antes de desplazarte.</p>
+      <div class="actions">
+        <a class="button button--primary" href={siteConfig.phoneHref}>Llamar {siteConfig.phoneDisplay}</a>
+        <a class="button button--secondary" href="/">Ver ubicación desde inicio</a>
+      </div>
+      <p class="address">{siteConfig.address}</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .emergency {
+    min-height: 32rem;
+    background: linear-gradient(180deg, #f7faff, #fff);
+  }
+
+  .emergency-inner {
+    max-width: 48rem;
+  }
+
+  .emergency-inner > p:not(.eyebrow):not(.address) {
+    margin-top: var(--space-6);
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+  }
+
+  .address {
+    margin-top: var(--space-8);
+    font-weight: 600;
+  }
+</style>
