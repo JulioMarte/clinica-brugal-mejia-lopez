@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Melosa Clínica Brugal">
+  <circle cx="32" cy="32" r="30" fill="#123FA3"/>
+  <circle cx="32" cy="32" r="23" fill="none" stroke="#FFFFFF" stroke-width="2" opacity=".9"/>
+  <text x="32" y="36" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">MCB</text>
+</svg>
