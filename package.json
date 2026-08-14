@@ -12,7 +12,14 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "test": "node --test tests/*.test.mjs",
+    "test:content": "node --test tests/content-contract.test.mjs",
+    "content:check": "node scripts/content-contract.mjs",
+    "content:pull": "node scripts/directus-copy-sync.mjs pull",
+    "content:push-draft": "node scripts/directus-copy-sync.mjs push-draft",
+    "content:check-remote": "node scripts/directus-copy-sync.mjs check-remote",
+    "validate": "npm run content:check && npm test && npm run check && npm run build"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",
