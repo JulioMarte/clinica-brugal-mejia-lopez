@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HomeHero from '../components/HomeHero.astro';
+import { copy } from '../lib/copy';
 ---
 
 <BaseLayout>
@@ -8,113 +9,35 @@ import HomeHero from '../components/HomeHero.astro';
 
   <section class="section" aria-labelledby="acciones-title">
     <div class="container">
-      <p class="eyebrow">Acceso rápido</p>
-      <h2 id="acciones-title">¿Qué necesitas hacer?</h2>
-
+      <p class="eyebrow">{copy('home.quick.eyebrow')}</p>
+      <h2 id="acciones-title">{copy('home.quick.title')}</h2>
       <div class="quick-grid">
-        <a href="/medicos/">
-          <strong>Buscar médico</strong>
-          <span>Encuentra especialistas y perfiles médicos.</span>
-        </a>
-        <a href="/especialidades/">
-          <strong>Ver especialidades</strong>
-          <span>Explora las áreas médicas disponibles.</span>
-        </a>
-        <a href="/emergencia/">
-          <strong>Emergencia 24/7</strong>
-          <span>Consulta cómo llegar y cómo comunicarte.</span>
-        </a>
-        <a href="/citas/">
-          <strong>Agendar cita</strong>
-          <span>Inicia el proceso de solicitud de cita.</span>
-        </a>
+        <a href="/medicos/"><strong>{copy('home.quick.doctors.title')}</strong><span>{copy('home.quick.doctors.description')}</span></a>
+        <a href="/especialidades/"><strong>{copy('home.quick.specialties.title')}</strong><span>{copy('home.quick.specialties.description')}</span></a>
+        <a href="/emergencia/"><strong>{copy('home.quick.emergency.title')}</strong><span>{copy('home.quick.emergency.description')}</span></a>
+        <a href="/citas/"><strong>{copy('home.quick.appointment.title')}</strong><span>{copy('home.quick.appointment.description')}</span></a>
       </div>
     </div>
   </section>
 
   <section class="section brand-preview" aria-labelledby="base-title">
     <div class="container preview-grid">
-      <div>
-        <p class="eyebrow">Base del proyecto</p>
-        <h2 id="base-title">Lista para evolucionar hacia la web de producción.</h2>
-      </div>
-      <p>
-        Esta primera pantalla valida layout, navegación, tokens visuales, jerarquía y rutas base.
-        El contenido clínico final se incorporará únicamente después de validarlo con el cliente.
-      </p>
+      <div><p class="eyebrow">{copy('home.preview.eyebrow')}</p><h2 id="base-title">{copy('home.preview.title')}</h2></div>
+      <p>{copy('home.preview.description')}</p>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .quick-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-4);
-    margin-top: var(--space-8);
-  }
-
-  .quick-grid a {
-    min-height: 10rem;
-    padding: var(--space-6);
-    color: var(--text-primary);
-    background: #fff;
-    border: 1px solid var(--border-default);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
-    text-decoration: none;
-  }
-
-  .quick-grid a:hover {
-    border-color: var(--brand-600);
-  }
-
-  .quick-grid strong,
-  .quick-grid span {
-    display: block;
-  }
-
-  .quick-grid strong {
-    color: var(--brand-900);
-    font-family: var(--font-heading);
-    font-size: 1.15rem;
-  }
-
-  .quick-grid span {
-    margin-top: var(--space-3);
-    color: var(--text-secondary);
-  }
-
-  .brand-preview {
-    background: var(--surface-secondary);
-  }
-
-  .preview-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-12);
-    align-items: start;
-  }
-
-  .preview-grid > p {
-    max-width: 42rem;
-    color: var(--text-secondary);
-    font-size: 1.125rem;
-  }
-
-  @media (max-width: 56rem) {
-    .quick-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .preview-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media (max-width: 36rem) {
-    .quick-grid {
-      grid-template-columns: 1fr;
-    }
-  }
+  .quick-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); margin-top: var(--space-8); }
+  .quick-grid a { min-height: 10rem; padding: var(--space-6); color: var(--text-primary); background: #fff; border: 1px solid var(--border-default); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); text-decoration: none; }
+  .quick-grid a:hover { border-color: var(--brand-600); }
+  .quick-grid strong, .quick-grid span { display: block; }
+  .quick-grid strong { color: var(--brand-900); font-family: var(--font-heading); font-size: 1.15rem; }
+  .quick-grid span { margin-top: var(--space-3); color: var(--text-secondary); }
+  .brand-preview { background: var(--surface-secondary); }
+  .preview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); align-items: start; }
+  .preview-grid > p { max-width: 42rem; color: var(--text-secondary); font-size: 1.125rem; }
+  @media (max-width: 56rem) { .quick-grid { grid-template-columns: 1fr 1fr; } .preview-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 36rem) { .quick-grid { grid-template-columns: 1fr; } }
 </style>
