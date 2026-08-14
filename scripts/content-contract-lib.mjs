@@ -14,6 +14,7 @@ export function validateManifest(manifest) {
 
   if (manifest?.schemaVersion !== 1) errors.push('template-copy schemaVersion must equal 1');
   if (!manifest?.siteKey || typeof manifest.siteKey !== 'string') errors.push('template-copy siteKey is required');
+  if (!manifest?.locale || typeof manifest.locale !== 'string') errors.push('template-copy locale is required');
   if (!Array.isArray(manifest?.entries)) errors.push('template-copy entries must be an array');
 
   const seen = new Set();
@@ -34,6 +35,7 @@ export function validateSnapshot(manifest, snapshot) {
 
   if (snapshot?.schemaVersion !== manifest?.schemaVersion) errors.push('Directus snapshot schemaVersion does not match manifest');
   if (snapshot?.siteKey !== manifest?.siteKey) errors.push('Directus snapshot siteKey does not match manifest');
+  if (snapshot?.locale !== manifest?.locale) errors.push('Directus snapshot locale does not match manifest');
 
   for (const [key, item] of Object.entries(snapshot?.items ?? {})) {
     if (!keys.has(key)) errors.push(`Directus snapshot contains unknown content key: ${key}`);
