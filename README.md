@@ -29,6 +29,10 @@ Canonical stack:
 - Human approval is required for publication.
 - Production builds consume publication-eligible content only.
 - Failed builds must not replace the last known-good deployment.
+- Editable template copy uses stable content keys.
+- Directus overrides always win over repository template defaults.
+- Repository copy changes synchronize to Directus drafts or Content Versions only.
+- Repository automation must never overwrite a published Directus item directly.
 
 ## Local development
 
@@ -52,11 +56,68 @@ Production publication permissions are not required for local theme development.
 
 ## Validation
 
+Run the complete gate:
+
 ```bash
+npm run validate
+```
+
+Individual checks:
+
+```bash
+npm run content:check
+npm test
 npm run check
 npm run build
 npm run preview
 ```
+
+## Template copy and Directus synchronization
+
+All editable template text must use a stable key from:
+
+```text
+src/content/template-copy.json
+```
+
+Astro resolves copy through:
+
+```text
+src/lib/copy.ts
+```
+
+Published Directus values are materialized into:
+
+```text
+src/generated/directus-copy.json
+```
+
+Precedence:
+
+```text
+Directus override
+    > Directus published template value
+    > repository template default
+```
+
+Use these commands when Directus is configured:
+
+```bash
+npm run content:pull
+npm run content:push-draft
+npm run content:check-remote
+```
+
+Required environment variables:
+
+```text
+DIRECTUS_URL
+DIRECTUS_TOKEN
+```
+
+`content:push-draft` never publishes repository changes. Existing records are changed through a Directus Content Version. New records are created as drafts.
+
+See `docs/architecture/template-copy-sync.md` for the canonical contract.
 
 ## Repository structure
 
@@ -71,10 +132,15 @@ npm run preview
 │   ├── sources/              # research sources
 │   ├── web/                  # implementation specification
 │   └── mockups/              # illustrative prototypes
+├── scripts/                  # contract validation and Directus synchronization
+├── tests/                    # hard architecture/content tests
 ├── public/                   # static assets
 ├── src/
 │   ├── components/           # reusable UI components
 │   ├── config/               # site configuration
+│   ├── content/              # keyed repository template defaults
+│   ├── generated/            # generated Directus build snapshots
+│   ├── lib/                  # content resolver and shared code
 │   ├── layouts/              # shared Astro layouts
 │   ├── pages/                # route entry points
 │   └── styles/               # global design tokens and styles
@@ -90,6 +156,7 @@ Start with:
 - `docs/README.md`
 - `docs/architecture/site-foundry-integration.md`
 - `docs/architecture/directus-content-model.md`
+- `docs/architecture/template-copy-sync.md`
 - `docs/architecture/page-rendering-contract.md`
 - `docs/architecture/navigation-contract.md`
 - `docs/architecture/publishing-workflow.md`
