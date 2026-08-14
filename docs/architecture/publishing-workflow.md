@@ -8,6 +8,8 @@ Define how Directus content becomes a public static deployment.
 
 Publication is an explicit controlled transition.
 
+Repository-authored template copy follows the same human publication boundary.
+
 ## 2. Editorial states
 
 Use this workflow:
@@ -32,7 +34,7 @@ Medical content cannot skip required medical review.
 
 ## 3. LLM permissions
 
-The LLM acts as a draft editor.
+The LLM acts as a draft editor and template author.
 
 Allowed:
 
@@ -42,17 +44,21 @@ Allowed:
 - propose navigation changes;
 - propose metadata;
 - prepare translations;
-- attach permitted media.
+- attach permitted media;
+- edit repository template defaults;
+- synchronize repository template proposals into Directus drafts or Content Versions.
 
 Forbidden:
 
 - set `published`;
+- promote a Content Version;
 - approve its own work;
 - bypass review states;
 - change role permissions;
 - mutate protected schema;
 - delete published content;
-- modify audit history.
+- modify audit history;
+- patch a published Directus main item through repository automation.
 
 ## 4. Human roles
 
@@ -66,22 +72,49 @@ Can approve clinical accuracy where assigned.
 
 ### Institutional approver
 
-Can approve branding, operations, history, and publication readiness.
+Can approve branding, operations, history, template copy, and publication readiness.
 
 ### Publisher/administrator
 
-Can transition approved content into public publication state.
+Can transition approved content into public publication state and promote approved Content Versions.
 
 Use least privilege.
 
-## 5. Publication trigger
+## 5. Repository template-copy workflow
 
-A human publication action can trigger the Site Foundry build pipeline.
+LLM/template changes use stable `content_key` records.
+
+```text
+LLM changes repository default
+        ↓
+content contract tests
+        ↓
+content:push-draft
+        ↓
+new key -> Directus draft item
+existing key -> Directus Content Version `repo-sync`
+        ↓
+human review
+        ↓
+promote version / publish item
+        ↓
+published main becomes build input
+```
+
+Directus `override_value` remains independent from repository `template_value`.
+
+An existing editorial override therefore survives later repository template changes.
+
+See `template-copy-sync.md`.
+
+## 6. Publication trigger
+
+A human publication or version-promotion action can trigger the Site Foundry build pipeline.
 
 Preferred flow:
 
 ```text
-Human publishes in Directus
+Human publishes/promotes in Directus
         ↓
 validated webhook/event
         ↓
@@ -89,7 +122,7 @@ Site Foundry selects affected site
         ↓
 fetch published snapshot
         ↓
-validate content graph
+validate content graph and template-copy keys
         ↓
 Astro build
         ↓
@@ -100,13 +133,13 @@ deploy static artifact
 post-deploy verification
 ```
 
-## 6. Build isolation
+## 7. Build isolation
 
 A Clínica Brugal content event must rebuild only the intended site unless a shared dependency requires broader rebuilds.
 
 Cross-site content leakage is a release-blocking defect.
 
-## 7. Snapshot rule
+## 8. Snapshot rule
 
 Build from a coherent content snapshot.
 
@@ -114,7 +147,11 @@ Do not mix records from different publication moments when consistency matters.
 
 The build log should record enough identifiers to reproduce the content version used.
 
-## 8. Pre-build gates
+Published template-copy values are materialized into `src/generated/directus-copy.json` or an equivalent Site Foundry build snapshot before Astro rendering.
+
+Production builds must not read draft Content Versions.
+
+## 9. Pre-build gates
 
 Validate at minimum:
 
@@ -128,9 +165,12 @@ Validate at minimum:
 - media references;
 - structured-data inputs;
 - blocked claims;
-- redirect conflicts.
+- redirect conflicts;
+- known template-copy keys;
+- no unknown Directus copy keys;
+- no hardcoded editable copy in protected template surfaces.
 
-## 9. Build failure
+## 10. Build failure
 
 Fail closed.
 
@@ -141,7 +181,7 @@ When validation or build fails:
 - surface the affected record or validation reason;
 - allow human correction and rebuild.
 
-## 10. Directus outage
+## 11. Directus outage
 
 A Directus outage must not remove the live static website.
 
@@ -149,7 +189,7 @@ Existing production static assets remain available.
 
 New builds can fail until content access returns.
 
-## 11. Media failure
+## 12. Media failure
 
 Missing required media blocks publication only when the page contract marks it required.
 
@@ -157,7 +197,7 @@ Missing optional media must use an approved empty state.
 
 Do not publish broken image references.
 
-## 12. Post-deploy checks
+## 13. Post-deploy checks
 
 Verify:
 
@@ -171,15 +211,16 @@ Verify:
 - canonical metadata;
 - navigation;
 - critical forms/CTAs;
-- 404 behavior.
+- 404 behavior;
+- representative Directus copy override.
 
-## 13. Rollback
+## 14. Rollback
 
 Retain a last known-good deployment artifact or platform deployment revision.
 
 Rollback must not depend on restoring mutable CMS state first.
 
-## 14. Revalidation
+## 15. Revalidation
 
 Time-sensitive records should support `review_due_at`.
 
@@ -198,7 +239,7 @@ An overdue record does not automatically become false.
 
 It becomes a review risk that requires policy-based handling.
 
-## 15. Auditability
+## 16. Auditability
 
 Record:
 
@@ -208,9 +249,12 @@ Record:
 - record;
 - previous state;
 - new state;
+- repository revision where applicable;
+- template hash where applicable;
+- Directus Content Version key where applicable;
 - build/deployment identifier when publication occurs.
 
-## 16. Security
+## 17. Security
 
 Webhook or event triggers must authenticate requests.
 
@@ -218,7 +262,9 @@ Do not expose Directus administrative credentials to the browser or static bundl
 
 Build credentials must use least privilege.
 
-## 17. Production invariant
+The repository synchronization credential must not have version-promotion or publication permission.
+
+## 18. Production invariant
 
 Only human-approved published content can enter a production build.
 

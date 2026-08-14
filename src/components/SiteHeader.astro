@@ -1,29 +1,30 @@
 ---
 import { primaryNavigation, siteConfig } from '../config/site';
+import { copy } from '../lib/copy';
 ---
 
 <header class="site-header">
   <div class="utility-bar">
     <div class="container utility-bar__inner">
-      <a href={siteConfig.phoneHref}>Emergencia 24 horas · {siteConfig.phoneDisplay}</a>
+      <a href={siteConfig.phoneHref}>{copy('header.emergency_label')} · {siteConfig.phoneDisplay}</a>
       <span>{siteConfig.address}</span>
     </div>
   </div>
 
   <div class="container header-row">
-    <a class="brand" href="/" aria-label={`${siteConfig.name}, inicio`}>
-      <span class="brand-mark" aria-hidden="true">MCB</span>
+    <a class="brand" href="/" aria-label={`${siteConfig.name}, ${copy('a11y.home_label_suffix')}`}>
+      <span class="brand-mark" aria-hidden="true">{copy('header.brand_mark')}</span>
       <span>
         <strong>{siteConfig.name}</strong>
         <small>{siteConfig.philosophy}</small>
       </span>
     </a>
 
-    <nav class="desktop-nav" aria-label="Navegación principal">
+    <nav class="desktop-nav" aria-label={copy('a11y.primary_navigation')}>
       {primaryNavigation.map((item) => <a href={item.href}>{item.label}</a>)}
     </nav>
 
-    <a class="button button--primary header-cta" href="/citas/">Agendar cita</a>
+    <a class="button button--primary header-cta" href="/citas/">{copy('header.appointment_cta')}</a>
   </div>
 </header>
 

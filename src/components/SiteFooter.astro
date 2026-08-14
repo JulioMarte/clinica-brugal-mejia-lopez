@@ -1,5 +1,6 @@
 ---
 import { primaryNavigation, siteConfig } from '../config/site';
+import { copy } from '../lib/copy';
 ---
 
 <footer class="site-footer">
@@ -11,20 +12,20 @@ import { primaryNavigation, siteConfig } from '../config/site';
     </div>
 
     <div>
-      <h2>Atención</h2>
-      <a href="/emergencia/">Emergencia 24/7</a>
-      <a href="/citas/">Agendar cita</a>
+      <h2>{copy('footer.care_heading')}</h2>
+      <a href="/emergencia/">{copy('footer.emergency_link')}</a>
+      <a href="/citas/">{copy('footer.appointment_link')}</a>
       <a href={siteConfig.phoneHref}>{siteConfig.phoneDisplay}</a>
     </div>
 
     <div>
-      <h2>Navegación</h2>
+      <h2>{copy('footer.navigation_heading')}</h2>
       {primaryNavigation.map((item) => <a href={item.href}>{item.label}</a>)}
     </div>
   </div>
 
   <div class="container footer-bottom">
-    <small>© {new Date().getFullYear()} {siteConfig.name}. Todos los derechos reservados.</small>
+    <small>© {new Date().getFullYear()} {siteConfig.name}. {copy('footer.rights')}</small>
   </div>
 </footer>
 

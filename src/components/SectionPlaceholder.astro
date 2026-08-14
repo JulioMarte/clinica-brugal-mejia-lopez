@@ -1,11 +1,13 @@
 ---
+import { copy } from '../lib/copy';
+
 interface Props {
   eyebrow?: string;
   title: string;
   description: string;
 }
 
-const { eyebrow = 'En preparación', title, description } = Astro.props;
+const { eyebrow = copy('placeholder.eyebrow'), title, description } = Astro.props;
 ---
 
 <section class="section placeholder">
@@ -13,7 +15,7 @@ const { eyebrow = 'En preparación', title, description } = Astro.props;
     <p class="eyebrow">{eyebrow}</p>
     <h1>{title}</h1>
     <p>{description}</p>
-    <a class="button button--secondary" href="/">Volver al inicio</a>
+    <a class="button button--secondary" href="/">{copy('placeholder.back_home')}</a>
   </div>
 </section>
 

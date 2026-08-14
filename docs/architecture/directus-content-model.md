@@ -8,7 +8,7 @@ Define the minimum structured content model for Clínica Brugal.
 
 The model supports static Astro rendering through Site Foundry.
 
-It must separate reusable entities from page composition.
+It must separate reusable entities from page composition and template copy.
 
 ## 2. Core collections
 
@@ -27,6 +27,49 @@ Required fields:
 - `default_locale`
 - `supported_locales`
 - `status`
+
+### `template_copy`
+
+Purpose: store versioned, overrideable text originating from the repository template.
+
+Required fields:
+
+- `id`
+- `site_key`
+- `content_key`
+- `locale`
+- `template_value`
+- `override_value`
+- `template_hash`
+- `repo_revision`
+- `status`
+
+Required constraint:
+
+```text
+UNIQUE(site_key, locale, content_key)
+```
+
+Enable **Directus Content Versioning** for this collection.
+
+Semantics:
+
+```text
+template_value = latest human-approved repository template value
+override_value = editorial Directus override
+```
+
+Effective public value:
+
+```text
+override_value ?? template_value
+```
+
+Repository automation may create draft items and update Content Versions.
+
+Repository automation must not patch published main items directly.
+
+See `template-copy-sync.md` for the complete synchronization contract.
 
 ### `pages`
 
@@ -249,6 +292,8 @@ page ↔ FAQ
 
 Do not duplicate these relations as free-text lists.
 
+`template_copy` is intentionally key-based and does not replace typed medical entities.
+
 ## 4. Provenance contract
 
 Operational and medical content must support:
@@ -281,6 +326,10 @@ A record is eligible for public rendering only when:
 - required locale fields are valid;
 - its site relationship matches the build target.
 
+For `template_copy`, only the published main version is eligible for production snapshots.
+
+Draft Content Versions remain invisible until a human promotes them.
+
 ## 6. Slug rules
 
 - Use lowercase ASCII slugs.
@@ -298,6 +347,8 @@ Do not place Spanish and English copy in the same arbitrary rich-text field.
 Spanish is the source locale.
 
 English requires review before publication.
+
+Template-copy uniqueness includes locale.
 
 ## 8. Rich content
 
@@ -335,8 +386,12 @@ Examples:
 
 Pages should reference those records instead of copying values.
 
+Do not place these values in `template_copy` merely because they render as text.
+
 ## 10. LLM role
 
 The LLM editorial role can write draft content only.
 
-Restrict schema mutation and publication permissions to trusted human administrators.
+Repository automation can synchronize template proposals only into draft records or Content Versions.
+
+Restrict schema mutation, version promotion, and publication permissions to trusted human administrators.
