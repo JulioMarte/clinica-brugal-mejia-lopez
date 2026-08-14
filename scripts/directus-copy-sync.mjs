@@ -17,6 +17,7 @@ if (!['pull', 'push-draft', 'check-remote'].includes(mode)) {
 const baseUrl = process.env.DIRECTUS_URL?.replace(/\/$/, '');
 const token = process.env.DIRECTUS_TOKEN;
 const siteKey = process.env.DIRECTUS_SITE_KEY ?? manifest.siteKey;
+const locale = process.env.DIRECTUS_LOCALE ?? manifest.locale;
 const collection = process.env.DIRECTUS_COPY_COLLECTION ?? 'template_copy';
 const versionKey = process.env.DIRECTUS_COPY_VERSION_KEY ?? 'repo-sync';
 
@@ -54,8 +55,8 @@ function query(value) {
 }
 
 async function readMainItems() {
-  const fields = 'id,site_key,content_key,template_value,override_value,template_hash,status';
-  const endpoint = `/items/${collection}?filter[site_key][_eq]=${query(siteKey)}&limit=-1&fields=${query(fields)}`;
+  const fields = 'id,site_key,locale,content_key,template_value,override_value,template_hash,status';
+  const endpoint = `/items/${collection}?filter[site_key][_eq]=${query(siteKey)}&filter[locale][_eq]=${query(locale)}&limit=-1&fields=${query(fields)}`;
   return await request(endpoint);
 }
 
@@ -93,12 +94,13 @@ async function pull() {
   const snapshot = {
     schemaVersion: manifest.schemaVersion,
     siteKey,
+    locale,
     generatedAt: new Date().toISOString(),
     items: output,
   };
 
   await writeFile(snapshotPath, `${JSON.stringify(snapshot, null, 2)}\n`, 'utf8');
-  console.log(`Pulled ${Object.keys(output).length} published Directus copy overrides.`);
+  console.log(`Pulled ${Object.keys(output).length} published Directus copy overrides for ${locale}.`);
 }
 
 async function readVersion(itemId) {
@@ -131,6 +133,7 @@ async function createDraftItem(entry, revision) {
     method: 'POST',
     body: JSON.stringify({
       site_key: siteKey,
+      locale,
       content_key: entry.key,
       template_value: entry.default,
       override_value: null,
@@ -170,7 +173,7 @@ async function pushDraft() {
     versioned += 1;
   }
 
-  console.log(`Directus draft sync complete: ${created} new drafts, ${versioned} versioned updates.`);
+  console.log(`Directus draft sync complete for ${locale}: ${created} new drafts, ${versioned} versioned updates.`);
   console.log('No published Directus item was overwritten. Human promotion remains required.');
 }
 
@@ -193,7 +196,7 @@ async function checkRemote() {
     process.exit(1);
   }
 
-  console.log(`Remote contract OK: ${remoteItems.length} Directus records match known keys.`);
+  console.log(`Remote contract OK: ${remoteItems.length} Directus records match known keys for ${locale}.`);
 }
 
 if (mode === 'pull') await pull();
