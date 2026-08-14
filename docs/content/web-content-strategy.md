@@ -1,46 +1,64 @@
 # Web Content Strategy — Melosa Clínica Brugal
 
+Status: **content strategy aligned with canonical architecture**
+
 ## 1. Product objective
 
-The public website must first help a patient complete a task. Brand storytelling and SEO support those tasks but do not replace them.
+The public website must first help a patient complete a task.
+
+Brand storytelling and SEO support those tasks but do not replace them.
 
 Primary tasks:
 
 1. Find a doctor.
 2. Find a specialty or service.
-3. Book an appointment.
+3. Book or request an appointment.
 4. Contact emergency care.
 5. Find the clinic and get directions.
 
 Secondary tasks:
 
-- verify insurance acceptance;
+- verify insurance information;
 - understand a diagnostic service;
 - learn about the institution;
 - access international-patient information;
 - review medical educational content;
-- find laboratory/result channels where available.
+- find laboratory/result channels when available.
 
-## 2. Homepage hierarchy
+## 2. Architecture dependency
 
-Recommended production homepage:
+This document does not define canonical URL mechanics independently.
 
-1. **Hero**
-2. **Quick patient actions**
-3. **Priority services**
-4. **Doctor/specialty finder**
-5. **Cardiovascular feature**
-6. **Diagnostics**
-7. **Trust / history**
-8. **International patients**
-9. **Insurance**
-10. **Location and directions**
-11. **Final appointment CTA**
-12. **Footer**
+Use `../architecture/page-rendering-contract.md` for canonical page types and URLs.
 
-The homepage should not reproduce the entire brand book or dump all specialties at once.
+Use `../architecture/directus-content-model.md` for structured content fields and relations.
 
-## 3. Hero
+Use `../architecture/navigation-contract.md` for menu membership.
+
+## 3. Homepage hierarchy
+
+Recommended homepage composition:
+
+1. Hero.
+2. Quick patient actions.
+3. Priority services.
+4. Doctor/specialty finder.
+5. Cardiovascular feature.
+6. Diagnostics feature.
+7. Trust/history.
+8. International patients.
+9. Insurance.
+10. Location and directions.
+11. Final appointment CTA.
+12. Footer.
+
+The CMS can configure allowlisted sections and ordering.
+
+The codebase protects global shell, navigation behavior, accessibility, and SEO primitives.
+
+## 4. Hero
+
+Working copy remains provisional until institutional approval.
 
 ### Eyebrow
 
@@ -62,176 +80,158 @@ The homepage should not reproduce the entire brand book or dump all specialties 
 
 **Emergencia 24/7**
 
-## 4. Quick actions
+Do not publish an operational emergency claim until verified.
 
-Expose the most important tasks immediately after navigation:
+## 5. Quick actions
 
-- Buscar médico
-- Ver especialidades
-- Emergencia 24/7
-- Agendar cita
-- Laboratorio
-- Imágenes
-- Seguros
-- Cómo llegar
+Potential quick actions:
 
-Mobile should keep call and appointment actions easily accessible.
+- Buscar médico.
+- Ver especialidades.
+- Emergencia.
+- Agendar cita.
+- Laboratorio.
+- Imágenes.
+- Seguros.
+- Cómo llegar.
 
-## 5. Progressive disclosure
+These are presentation links.
 
-Do not show forty specialties in one long homepage block.
+They do not define separate canonical content types.
 
-Show a small group of high-value specialties and provide:
+For example, a laboratory service can remain canonically under `/servicios/` while being featured directly from the homepage.
 
-**Ver todas las especialidades →**
+## 6. Canonical information architecture
 
-The complete directory should support search and filtering.
-
-## 6. Proposed information architecture
+Use these initial page families:
 
 ```text
 /
 ├── medicos/
-│   └── [slug]
+│   └── [slug]/
 ├── especialidades/
-│   └── [slug]
+│   └── [slug]/
 ├── servicios/
-│   └── [slug]
+│   ├── [slug]/
+│   └── [service]/[procedure]/
+├── pacientes/
+│   └── [slug]/
 ├── emergencia/
-├── laboratorio/
-├── imagenes/
-├── cardiovascular/
-├── hospitalizacion/
-├── cuidados-intensivos/
-├── pediatria/
-├── seguros/
-├── pacientes-internacionales/
+├── ubicaciones/
+│   └── [slug]/
 ├── nosotros/
-│   ├── historia/
-│   ├── mision-vision-valores/
-│   ├── liderazgo/
-│   ├── instalaciones/
-│   └── investigacion-educacion/
+│   └── [slug]/
 ├── noticias/
+│   └── [slug]/
 ├── contacto/
-└── citas/
+└── en/
 ```
 
-English can later live under `/en/` with equivalent canonical content where justified.
+Do not create a second canonical URL for the same service merely because it is commercially important.
+
+Use navigation and homepage features to increase prominence.
 
 ## 7. Doctor content model
 
-Each doctor profile should contain structured fields rather than a free-form page.
+Each doctor profile uses structured fields.
 
-Recommended fields:
+Required or recommended data can include:
 
-- full name;
+- full professional name;
+- display name;
 - professional title;
-- specialty;
-- subspecialty;
+- specialty relation;
+- subspecialty relation or verified field;
 - profile photo;
-- short biography;
+- biography;
 - education;
-- certifications/credentials;
+- credentials;
 - languages;
-- services/procedures;
-- insurance accepted;
-- clinic location/building;
-- consultation schedule;
+- service relations;
+- insurer relations and exceptions;
+- location;
+- schedule;
 - appointment channel;
-- status (`verified`, `needs_review`, `historical`, `deprecated`);
+- verification status;
+- publication status;
+- provenance;
 - last verified date.
 
-Suggested URL:
-
-`/medicos/nombre-apellido`
+Do not duplicate doctor information as unrelated page copy.
 
 ## 8. Specialty content model
 
-Each specialty page should answer patient questions.
+A specialty page should answer patient intent.
 
 Suggested structure:
 
 1. What the specialty helps with.
-2. Common symptoms or reasons for consultation.
-3. Conditions treated.
+2. Common reasons for consultation.
+3. Conditions treated when medically reviewed.
 4. Relevant diagnostic studies.
 5. Available services or procedures.
-6. Doctors in the specialty.
-7. Frequently asked questions.
-8. Appointment CTA.
+6. Participating doctors.
+7. Useful FAQs.
+8. Appointment action.
 
-Avoid starting every page with textbook definitions such as “Cardiology is a branch of medicine...” when a patient-centered opening can answer intent faster.
+Avoid generic textbook openings when a patient-oriented answer is clearer.
 
-Suggested URL:
+## 9. Service and procedure content
 
-`/especialidades/cardiologia`
-
-## 9. Service/procedure content model
-
-Example URL:
-
-`/servicios/resonancia-magnetica`
-
-Suggested structure:
+A service page can cover:
 
 1. What the service is.
 2. Why a physician may request it.
 3. How to prepare.
-4. Typical process.
+4. Typical administrative or clinical process.
 5. Important general precautions.
-6. Where the service is located.
+6. Where the service is provided.
 7. How to schedule.
-8. Related doctors/specialties.
-9. FAQ.
+8. Related doctors and specialties.
+9. FAQs.
 
-Clinical claims and preparation instructions require medical review.
+Clinical preparation and safety instructions require appropriate review.
 
-## 10. Emergency page
+Create a separate procedure page only when it has enough distinct patient value and verified content.
 
-Emergency information must be visible with minimal scrolling.
+## 10. Emergency content
 
-Working public information:
+Emergency information must be visible with minimal interaction.
 
-- **Emergencia 24 horas**
-- **809-586-2519**
-- **Calle José del Carmen Ariza #15, Puerto Plata**
+The canonical operational values must come from verified Directus records.
+
+Do not hardcode working phone numbers, hours, entrance instructions, or addresses into strategy documents as production truth.
 
 The page should prioritize:
 
 - call action;
 - directions;
+- verified location;
 - entrance instructions;
 - emergency scope;
-- pediatric emergency information if separately operated;
-- what to bring when appropriate;
-- clear warning that website content is not a substitute for emergency evaluation.
+- pediatric emergency details when applicable;
+- distinction from routine appointments.
+
+The website must not attempt to replace emergency assessment.
 
 ## 11. International patients
 
-International care deserves a dedicated product page.
+International care can use reviewed English pages under `/en/`.
 
-Recommended URL:
+Potential content areas:
 
-`/en/international-patients`
-
-Recommended H1:
-
-**Medical Care in Puerto Plata**
-
-Content areas:
-
-- 24/7 assistance;
-- medical specialties;
 - emergency care;
+- specialists;
 - diagnostic services;
 - insurance coordination;
 - guarantee letters;
-- direct billing where applicable;
+- direct billing when verified;
 - medical reports;
-- interpretation;
+- interpretation when verified;
 - directions;
 - contact.
+
+Do not promise English-language or international-patient capabilities that operations cannot consistently provide.
 
 ## 12. Language roadmap
 
@@ -241,13 +241,13 @@ Spanish.
 
 ### Phase 2
 
-English.
+Reviewed English priority pages.
 
 ### Phase 3
 
-Evaluate French based on actual international-patient volume and operational language support.
+Evaluate French from actual operational need.
 
-Do not use raw machine translation for medical content without review.
+Do not publish raw machine-translated medical content.
 
 ## 13. History content
 
@@ -255,93 +255,73 @@ Working homepage history heading:
 
 **Una historia dedicada a cuidar**
 
-Working copy:
-
-**Melosa Clínica Brugal forma parte de la historia médica de Puerto Plata desde hace más de siete décadas. Su trayectoria conecta la vocación de servicio de sus orígenes con nuevas generaciones de médicos, especialidades y tecnología.**
-
-This copy avoids locking the site to a disputed founding year.
+Working narrative can describe multi-decade continuity without asserting a disputed founding year.
 
 The full history page should distinguish:
 
 - documented facts;
 - institutional tradition;
-- pending dates;
-- major medical milestones;
-- facilities expansion;
+- disputed dates;
+- medical milestones;
+- facility expansion;
 - generational transition.
 
 ## 14. Trust architecture
 
-Do not rely on adjectives such as “excellent” or “leading.”
+Demonstrate trust with evidence:
 
-Demonstrate trust with:
-
-- real doctors and credentials;
+- real doctors and verified credentials;
 - verified specialties;
 - actual services;
 - real facilities;
 - official contact information;
-- institutional history;
-- documented medical milestones;
+- documented institutional history;
+- medical milestones;
 - scientific activity;
-- insurers;
-- international-provider directories;
+- insurer information;
 - reviewed educational content.
+
+Do not substitute adjectives for evidence.
 
 ## 15. Editorial categories
 
-Recommended content categories:
+Recommended categories:
 
-### Education
-
-Prevention, symptoms, conditions, preparation for studies, patient guidance.
-
-### Specialists
-
-Doctor profiles and professional expertise.
-
-### Services
-
-Explain diagnostics and procedures.
-
-### History
-
-Institutional heritage and milestones.
-
-### Community
-
-Puerto Plata, prevention activities, institutional outreach.
-
-### Research and education
-
-Congresses, scientific presentations, academic collaborations, and medical education.
+- Education.
+- Specialists.
+- Services.
+- History.
+- Community.
+- Research and education.
 
 ## 16. Medical content governance
 
-Every substantive medical article should support:
+Substantive medical content should support:
 
 - author;
 - medical reviewer;
-- initial publication date;
+- publication date;
 - last reviewed date;
 - references where appropriate;
-- content status.
+- verification state;
+- publication state;
+- review due date.
 
-## 17. SEO architecture
+## 17. SEO and UX
 
-SEO and UX should share the same information architecture.
+SEO and UX share the same entity architecture.
 
 Examples:
 
-- `/especialidades/cardiologia`
-- `/servicios/resonancia-magnetica`
-- `/medicos/nombre-apellido`
+- `/especialidades/cardiologia/`
+- `/servicios/resonancia-magnetica/`
+- `/medicos/nombre-apellido/`
 
-Do not create large numbers of near-duplicate keyword pages.
+Do not generate near-duplicate local keyword pages.
 
 ## 18. High-value local search intents
 
-Potential page intent includes:
+Potential intents include:
 
 - cardiólogo en Puerto Plata;
 - resonancia magnética Puerto Plata;
@@ -352,7 +332,7 @@ Potential page intent includes:
 - tomografía Puerto Plata;
 - clínica privada Puerto Plata.
 
-International search intent can include:
+International intent can include:
 
 - private medical center Puerto Plata;
 - emergency care Puerto Plata;
@@ -360,25 +340,23 @@ International search intent can include:
 - medical care for tourists Puerto Plata;
 - private hospital Puerto Plata.
 
-Use “hospital” descriptively for foreign search intent when appropriate, not as the institution’s official name.
+Use `hospital` descriptively for foreign search intent when useful.
+
+Do not rename the institution around that term.
 
 ## 19. NAP consistency
 
-The website, Google Business Profile, social accounts, directories, and schema must use a consistent name, address, and telephone.
+Name, address, and phone must come from canonical operational records.
 
-Working baseline:
+The site, Google Business Profile, social profiles, directories, and structured data should converge on the same verified values.
 
-- **Name:** Melosa Clínica Brugal
-- **Address:** Calle José del Carmen Ariza #15, Puerto Plata, República Dominicana
-- **Phone:** 809-586-2519
-
-Verify before launch.
+Do not treat working research values as production truth.
 
 ## 20. Forms
 
-Keep initial appointment forms short.
+Keep appointment forms short.
 
-Working fields:
+Possible fields:
 
 - name;
 - phone;
@@ -388,26 +366,52 @@ Working fields:
 - preferred date;
 - short administrative message.
 
-Do not request unnecessary sensitive medical information through a generic public form.
+Do not request unnecessary medical information through a generic public form.
 
-## 21. Photography and content truth
+## 21. Photography and media truth
 
-Stock may illustrate concepts during development.
+Stock can support development and prototyping.
 
-Never present stock photography as the clinic’s actual:
+Never present stock media as actual clinic:
 
 - facilities;
 - doctors;
 - equipment;
 - rooms;
-- emergency department.
+- emergency departments.
 
-Real institutional imagery should replace stock progressively.
+Track source, ownership, consent, stock status, and replacement requirements in the media model.
 
-## 22. Content north star
+## 22. Content ownership
+
+Assign operational owners before launch.
+
+At minimum define responsibility for:
+
+- doctor roster;
+- doctor schedules;
+- insurance;
+- emergency contacts;
+- service availability;
+- medical review;
+- institutional approval;
+- SEO/editorial content;
+- English content.
+
+Use `review_due_at` for time-sensitive data.
+
+## 23. LLM editorial use
+
+An LLM can create or update drafts within its Directus role.
+
+It cannot approve or publish content.
+
+Medical and institutional review remain human-controlled.
+
+## 24. Content north star
 
 Every page should answer:
 
 > **What does this patient need to know or do next?**
 
-If content does not improve understanding, trust, navigation, or conversion, it should not automatically be added to the page.
+If content does not improve understanding, trust, navigation, or conversion, do not add it automatically.
