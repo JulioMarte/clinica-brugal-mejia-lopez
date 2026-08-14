@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, dev, content-sync-hardening]
   pull_request:
-    branches: [main]
+    branches: [main, dev]
 
 permissions:
   contents: read
@@ -25,6 +25,12 @@ jobs:
 
       - name: Install dependencies
         run: npm install --no-audit --no-fund
+
+      - name: Enforce keyed content contract
+        run: npm run content:check
+
+      - name: Content hard tests
+        run: npm test
 
       - name: Astro check
         run: npm run check
