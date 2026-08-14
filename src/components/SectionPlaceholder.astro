@@ -1,0 +1,40 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description: string;
+}
+
+const { eyebrow = 'En preparación', title, description } = Astro.props;
+---
+
+<section class="section placeholder">
+  <div class="container placeholder-inner">
+    <p class="eyebrow">{eyebrow}</p>
+    <h1>{title}</h1>
+    <p>{description}</p>
+    <a class="button button--secondary" href="/">Volver al inicio</a>
+  </div>
+</section>
+
+<style>
+  .placeholder {
+    min-height: 32rem;
+    background: linear-gradient(180deg, #f7faff, #fff);
+  }
+
+  .placeholder-inner {
+    max-width: 50rem;
+  }
+
+  .placeholder p:not(.eyebrow) {
+    max-width: 42rem;
+    margin-top: var(--space-6);
+    color: var(--text-secondary);
+    font-size: 1.15rem;
+  }
+
+  .placeholder .button {
+    margin-top: var(--space-8);
+  }
+</style>
