@@ -1,10 +1,11 @@
+import { copy } from '../lib/copy';
+
 export const siteConfig = {
-  name: 'Melosa Clínica Brugal',
-  shortName: 'Clínica Brugal',
-  description:
-    'Clínica privada en Puerto Plata con atención médica especializada, emergencias, diagnóstico y servicios hospitalarios.',
-  tagline: 'Cuidarte es amarte.',
-  philosophy: 'Medicina especializada con trato humano personalizado.',
+  name: copy('site.name'),
+  shortName: copy('site.short_name'),
+  description: copy('site.description'),
+  tagline: copy('site.tagline'),
+  philosophy: copy('site.philosophy'),
   phoneDisplay: '(809) 586-2519',
   phoneHref: 'tel:+18095862519',
   address: 'Calle José del Carmen Ariza #15, Puerto Plata, República Dominicana',
@@ -13,9 +14,9 @@ export const siteConfig = {
 } as const;
 
 export const primaryNavigation = [
-  { label: 'Médicos', href: '/medicos/' },
-  { label: 'Especialidades', href: '/especialidades/' },
-  { label: 'Servicios', href: '/servicios/' },
-  { label: 'Pacientes', href: '/pacientes/' },
-  { label: 'Nosotros', href: '/nosotros/' },
+  { label: copy('nav.doctors'), href: '/medicos/' },
+  { label: copy('nav.specialties'), href: '/especialidades/' },
+  { label: copy('nav.services'), href: '/servicios/' },
+  { label: copy('nav.patients'), href: '/pacientes/' },
+  { label: copy('nav.about'), href: '/nosotros/' },
 ] as const;
