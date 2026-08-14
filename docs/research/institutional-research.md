@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This document consolidates the current public research performed for the Melosa Clínica Brugal project. It is not a substitute for internal institutional records. Historical and operational facts should be validated against client-provided documentation before final publication.
+This document consolidates the current public research performed for the Melosa Clínica Brugal project. It is not a substitute for internal institutional records. Historical and operational facts must be validated against client-provided documentation before final publication.
 
 ## 1. Current public identity
 
@@ -41,13 +41,13 @@ Public historical sources describe him as a physician strongly associated with P
 
 Research found a biographical sequence that places:
 
-- his medical graduation in the early 1940s;
+- medical graduation in the early 1940s;
 - authorization to practice in 1943;
 - postgraduate surgical training in Havana in 1943;
 - a clinical association in Puerto Plata with Dr. Alfonso T. Simpson and Dr. Diego Halley Loinaz Garrido in 1944;
 - establishment of his own clinic in 1952.
 
-The clinic appears historically under forms such as:
+Historical clinic names found include:
 
 - Clínica Dr. Francisco Brugal M.
 - Clínica Dr. Panchito
@@ -57,14 +57,14 @@ The clinic appears historically under forms such as:
 
 This is the most important unresolved historical issue.
 
-The current public institutional website contains conflicting references, including **1936** and **1973**.
+The current public institutional website contains conflicting references to **1936** and **1973**.
 
 Independent historical material reviewed during research better supports:
 
 - **1944** — participation in an associated clinic with Simpson and Loinaz;
 - **1952** — establishment of Dr. Francisco Brugal’s own clinic.
 
-Because the public claims conflict with the biographical chronology, no definitive foundation date should be published until the institution provides documentary evidence explaining the relationship between 1936, 1944, and 1952.
+Because the public claims conflict with the medical chronology, no definitive foundation date should be published until the institution provides documentary evidence explaining the relationship between 1936, 1944, and 1952.
 
 ### Working recommendation
 
@@ -78,9 +78,9 @@ until the foundation date is formally resolved.
 
 The institution’s own public history states that in **2001** the Mejía-López spouses acquired the clinic and began a new phase of growth and modernization under the Melosa Clínica Brugal identity.
 
-The clinic also publicly describes the ownership/medical leadership as spanning two generations of physicians.
+The clinic also publicly describes its owners as spanning two generations of physicians.
 
-This transition is a major part of the recommended brand narrative:
+Recommended historical narrative:
 
 **Panchito Brugal → Clínica Brugal → Mejía-López → new generations → contemporary medicine.**
 
@@ -94,7 +94,7 @@ Existing public tagline:
 
 **Cuidarte es amarte.**
 
-Published institutional values identified:
+Published institutional values:
 
 - calidad en los servicios;
 - ética;
@@ -107,52 +107,51 @@ Published institutional values identified:
 
 ## 7. Public leadership information
 
-The institutional website has publicly listed leadership/administrative roles including names such as:
+The current institutional website publicly lists leadership and administrative roles including:
 
-- Dra. Cándida López — President
-- Dr. Eliman Mejía — Director General
-- Dra. Eliani/Eliany Mejía — Medical Director
-- emergency leadership
-- UCI leadership
-- administration
-- accounting
-- insurance/medical plans
-- audit
-- laboratory
-- pharmacy
-- reception
-- maintenance
-- nursing
+- Dra. Cándida López — Presidente;
+- Dr. Eliman Mejía — Director General;
+- Dra. Eliani Mejía — Directora Médica;
+- emergency leadership;
+- UCI leadership;
+- administration;
+- accounting;
+- insurance/medical plans;
+- audit;
+- laboratory;
+- pharmacy;
+- reception;
+- maintenance;
+- nursing.
 
 Because organizational charts change, all names and roles must be revalidated before launch.
 
-## 8. Services identified publicly
+## 8. Services safely identified from current public sources
 
-Public sources describe or promote services including:
+The current institutional web presence directly promotes or describes:
 
-- emergency care;
-- hospitalization;
-- major and minor surgery;
-- bariatric surgery;
-- endoscopy;
-- laboratory;
-- intensive care;
-- magnetic resonance imaging;
-- computed tomography;
-- X-ray;
-- mammography;
-- sonography;
-- Holter monitoring;
-- ambulatory blood pressure monitoring (MAPA);
-- stress testing;
-- echocardiography;
-- stress echocardiography;
-- cardiovascular evaluation;
-- home sample collection;
-- radiology and image diagnostics;
-- interventional radiology.
+- emergency / 24-hour care;
+- Centro Cardiovascular;
+- Resonancia Magnética;
+- Radiología Intervencionista;
+- laboratory service, described by the institution as 24 hours;
+- hospitalization/internment facilities;
+- UCI / intensive-care capability through its specialty/leadership material;
+- broad medical specialty coverage;
+- international-patient assistance;
+- appointment management;
+- medical-report delivery;
+- international insurance coordination;
+- direct billing in the international-patient workflow;
+- interpretation/translation support for foreign patients.
 
-Every service must be operationally confirmed before final website publication.
+### Important correction
+
+A third-party PuertoPlataDR medical-center page contains a long detailed list including CT, mammography, bariatric surgery, endoscopy, stress testing, home sampling, and other capabilities. That detailed list belongs to **Bournigal Medical Center**, not Clínica Brugal.
+
+The Brugal entry on that same page only states that Brugal provides a broad catalog including **lab testing, MRI, and a wide range of medical specialties**.
+
+Therefore, do **not** treat the Bournigal list as evidence for Clínica Brugal. Services such as CT, mammography, bariatric surgery, endoscopy, home sampling, and specific cardiovascular tests must be independently confirmed from Brugal sources or directly with the client before publication.
 
 ## 9. Medical specialties identified publicly
 
@@ -228,18 +227,15 @@ The public listing represents approximately forty medical disciplines/specialtie
 
 The Cardiovascular Center is one of the clearest differentiation opportunities found in public material.
 
-Publicly identified cardiovascular capabilities include:
+Publicly identified cardiovascular specialties include:
 
 - cardiology;
 - electrophysiology;
 - angiology;
 - cardiovascular surgery;
-- vascular surgery;
-- Holter;
-- MAPA;
-- stress testing;
-- echocardiography;
-- cardiovascular evaluation.
+- vascular surgery.
+
+Specific studies/procedures should be confirmed from the center or client before publishing a complete catalog.
 
 ### 2020 pacemaker milestone
 
@@ -249,7 +245,7 @@ This is a valuable institutional milestone because it is externally documented r
 
 ### Scientific activity
 
-Public institutional material also references participation by the cardiovascular team in **ACC LATAM 2024**, including presentation of research posters.
+Public institutional material references participation by the cardiovascular team in **ACC LATAM 2024**, including presentation of research posters.
 
 This supports a future section for:
 
@@ -275,7 +271,7 @@ Do not market the protocol aggressively until those details are confirmed.
 
 Public material indicates a pediatric offering that includes multiple subspecialties and a dedicated pediatric emergency space.
 
-This creates a potential service family around:
+Potential service family:
 
 - pediatric emergency;
 - pediatrics;
@@ -284,9 +280,11 @@ This creates a potential service family around:
 - pediatric surgery;
 - family-oriented care.
 
-## 13. Maternal care
+All current hours and staffing require confirmation.
 
-Public material and external reporting support the existence of gynecology, obstetrics, and birth-related care.
+## 13. Women’s health and maternity
+
+The institutional specialty list supports gynecology and obstetrics. External reporting also suggests birth-related care.
 
 Before creating a dedicated maternity product page, confirm:
 
@@ -335,7 +333,7 @@ Do not infer that insurance accepted by one physician is universally accepted by
 
 A municipal document identified during research references a 2025 permit related to an **annex of a two-level building for Melosa Clínica Brugal SRL**.
 
-This provides external evidence that physical expansion continued recently.
+This provides external evidence of recent physical-expansion activity, but does not by itself prove completion or current use.
 
 Public references also suggest multiple professional buildings associated with the clinic, including references to Professional Building I and III.
 
@@ -362,11 +360,11 @@ The current logo should be treated as a heritage asset. A modern horizontal digi
 
 Research identified:
 
-- current institutional web pages hosted under a non-final technical domain;
+- current institutional pages hosted under `clinicabrugalmejia.ig-techx.com`;
 - another public Azure-hosted clinic web presence;
-- Instagram presence under the Melosa Clínica Brugal identity;
+- Instagram under the Melosa Clínica Brugal identity;
 - Facebook presence;
-- YouTube video embedded by the institutional history page.
+- a YouTube video embedded by the institutional history page.
 
 The existence of multiple web properties creates a risk of fragmented SEO authority and inconsistent information.
 
@@ -379,7 +377,7 @@ The future canonical site should become the single digital source of truth.
 3. A longstanding narrative of service and human care.
 4. The 2001 Mejía-López transition and generational continuity.
 5. Cardiovascular specialization and documented milestones.
-6. Broad diagnostic and multidisciplinary capabilities.
+6. Broad multidisciplinary capability.
 7. International patient services in a tourism-heavy market.
 8. Strong geographic association with Puerto Plata.
 
@@ -395,9 +393,10 @@ Public web material contains inconsistent or stale information. The following ca
 - equipment availability;
 - service availability;
 - regulatory claims;
-- “largest/best/first” claims.
+- “largest/best/first” claims;
+- third-party directory attribution errors.
 
-The final site should not blindly copy legacy pages.
+The final site must not blindly copy legacy pages or neighboring providers’ directory data.
 
 ## 21. Recommended next evidence collection from client
 
@@ -420,7 +419,7 @@ Request:
 - imaging equipment and models;
 - current laboratory catalog;
 - certifications and licenses;
-- official patient-international process;
+- official international-patient process;
 - approved institutional statistics;
 - current facility map;
 - approved media assets.
