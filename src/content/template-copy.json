@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "siteKey": "clinica-brugal-mejia-lopez",
+  "locale": "es-DO",
+  "entries": [
+    { "key": "site.name", "default": "Melosa Clínica Brugal", "kind": "text" },
+    { "key": "site.short_name", "default": "Clínica Brugal", "kind": "text" },
+    { "key": "site.description", "default": "Clínica privada en Puerto Plata con atención médica especializada, emergencias, diagnóstico y servicios hospitalarios.", "kind": "textarea" },
+    { "key": "site.tagline", "default": "Cuidarte es amarte.", "kind": "text" },
+    { "key": "site.philosophy", "default": "Medicina especializada con trato humano personalizado.", "kind": "text" },
+
+    { "key": "a11y.skip_to_main", "default": "Saltar al contenido principal", "kind": "text" },
+    { "key": "a11y.primary_navigation", "default": "Navegación principal", "kind": "text" },
+    { "key": "a11y.home_label_suffix", "default": "inicio", "kind": "text" },
+
+    { "key": "header.emergency_label", "default": "Emergencia 24 horas", "kind": "text" },
+    { "key": "header.appointment_cta", "default": "Agendar cita", "kind": "text" },
+    { "key": "header.brand_mark", "default": "MCB", "kind": "text" },
+    { "key": "nav.doctors", "default": "Médicos", "kind": "text" },
+    { "key": "nav.specialties", "default": "Especialidades", "kind": "text" },
+    { "key": "nav.services", "default": "Servicios", "kind": "text" },
+    { "key": "nav.patients", "default": "Pacientes", "kind": "text" },
+    { "key": "nav.about", "default": "Nosotros", "kind": "text" },
+
+    { "key": "hero.eyebrow", "default": "Clínica privada en Puerto Plata", "kind": "text" },
+    { "key": "hero.lead", "default": "Especialistas, diagnóstico, emergencias y atención hospitalaria para ti y tu familia.", "kind": "textarea" },
+    { "key": "hero.appointment_cta", "default": "Agendar cita", "kind": "text" },
+    { "key": "hero.emergency_cta", "default": "Emergencia 24/7", "kind": "text" },
+    { "key": "hero.image_aria_label", "default": "Espacio reservado para fotografía principal de la clínica", "kind": "text" },
+    { "key": "hero.image_placeholder", "default": "Fotografía principal pendiente", "kind": "text" },
+    { "key": "hero.image_note", "default": "Usar stock provisional o fotografía institucional aprobada.", "kind": "textarea" },
+
+    { "key": "home.quick.eyebrow", "default": "Acceso rápido", "kind": "text" },
+    { "key": "home.quick.title", "default": "¿Qué necesitas hacer?", "kind": "text" },
+    { "key": "home.quick.doctors.title", "default": "Buscar médico", "kind": "text" },
+    { "key": "home.quick.doctors.description", "default": "Encuentra especialistas y perfiles médicos.", "kind": "textarea" },
+    { "key": "home.quick.specialties.title", "default": "Ver especialidades", "kind": "text" },
+    { "key": "home.quick.specialties.description", "default": "Explora las áreas médicas disponibles.", "kind": "textarea" },
+    { "key": "home.quick.emergency.title", "default": "Emergencia 24/7", "kind": "text" },
+    { "key": "home.quick.emergency.description", "default": "Consulta cómo llegar y cómo comunicarte.", "kind": "textarea" },
+    { "key": "home.quick.appointment.title", "default": "Agendar cita", "kind": "text" },
+    { "key": "home.quick.appointment.description", "default": "Inicia el proceso de solicitud de cita.", "kind": "textarea" },
+    { "key": "home.preview.eyebrow", "default": "Base del proyecto", "kind": "text" },
+    { "key": "home.preview.title", "default": "Lista para evolucionar hacia la web de producción.", "kind": "text" },
+    { "key": "home.preview.description", "default": "Esta primera pantalla valida layout, navegación, tokens visuales, jerarquía y rutas base. El contenido clínico final se incorporará únicamente después de validarlo con el cliente.", "kind": "textarea" },
+
+    { "key": "placeholder.eyebrow", "default": "En preparación", "kind": "text" },
+    { "key": "placeholder.back_home", "default": "Volver al inicio", "kind": "text" },
+
+    { "key": "footer.care_heading", "default": "Atención", "kind": "text" },
+    { "key": "footer.emergency_link", "default": "Emergencia 24/7", "kind": "text" },
+    { "key": "footer.appointment_link", "default": "Agendar cita", "kind": "text" },
+    { "key": "footer.navigation_heading", "default": "Navegación", "kind": "text" },
+    { "key": "footer.rights", "default": "Todos los derechos reservados.", "kind": "text" }
+  ]
+}
