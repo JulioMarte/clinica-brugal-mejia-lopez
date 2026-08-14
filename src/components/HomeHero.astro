@@ -1,25 +1,24 @@
 ---
 import { siteConfig } from '../config/site';
+import { copy } from '../lib/copy';
 ---
 
 <section class="hero">
   <div class="container hero-grid">
     <div class="hero-copy">
-      <p class="eyebrow">Clínica privada en Puerto Plata</p>
+      <p class="eyebrow">{copy('hero.eyebrow')}</p>
       <h1>{siteConfig.philosophy}</h1>
-      <p class="hero-lead">
-        Especialistas, diagnóstico, emergencias y atención hospitalaria para ti y tu familia.
-      </p>
+      <p class="hero-lead">{copy('hero.lead')}</p>
 
       <div class="hero-actions">
-        <a class="button button--primary" href="/citas/">Agendar cita</a>
-        <a class="button button--secondary" href="/emergencia/">Emergencia 24/7</a>
+        <a class="button button--primary" href="/citas/">{copy('hero.appointment_cta')}</a>
+        <a class="button button--secondary" href="/emergencia/">{copy('hero.emergency_cta')}</a>
       </div>
     </div>
 
-    <div class="hero-placeholder" aria-label="Espacio reservado para fotografía principal de la clínica">
-      <span>Fotografía principal pendiente</span>
-      <small>Usar stock provisional o fotografía institucional aprobada.</small>
+    <div class="hero-placeholder" aria-label={copy('hero.image_aria_label')}>
+      <span>{copy('hero.image_placeholder')}</span>
+      <small>{copy('hero.image_note')}</small>
     </div>
   </div>
 </section>
