@@ -1,34 +1,56 @@
 # Melosa Clínica Brugal — Website
 
-Base del nuevo sitio web de Melosa Clínica Brugal en Puerto Plata, República Dominicana.
+Website package for Melosa Clínica Brugal in Puerto Plata, Dominican Republic.
 
-## Stack
+## Architecture
 
-- Astro 7.1.6
-- TypeScript strict
-- Static output
-- Node.js >= 22.12.0
-- CSS nativo con design tokens del brand system
+This repository is not a standalone brochure theme.
 
-## Requisitos
+It is a Clínica Brugal site package designed to operate with Site Foundry.
 
-Instala Node.js 22.12.0 o superior.
+Canonical stack:
+
+- Site Foundry for reusable site compilation and orchestration.
+- Astro 7.1.6 for static rendering.
+- TypeScript strict.
+- Directus for structured content and editorial workflow.
+- Cloudflare for target static deployment.
+- R2 or equivalent object storage for managed media when configured.
+- Node.js >= 22.12.0.
+
+## Architectural invariants
+
+- Public pages render statically by default.
+- Directus supplies structured content.
+- CMS content cannot replace protected layout or security code.
+- Navigation is CMS-configurable and supports submenus.
+- A page can exist for SEO without appearing in the primary menu.
+- LLM users can create and modify drafts only.
+- Human approval is required for publication.
+- Production builds consume publication-eligible content only.
+- Failed builds must not replace the last known-good deployment.
+
+## Local development
+
+Install Node.js 22.12.0 or newer.
 
 ```bash
 node --version
 npm --version
-```
-
-## Desarrollo local
-
-```bash
 npm install
 npm run dev
 ```
 
-Astro mostrará la URL local del servidor de desarrollo.
+Astro displays the local development URL.
 
-## Validación
+The target architecture supports two content modes:
+
+1. fixture mode for deterministic theme and CI work;
+2. authenticated Directus preview mode for realistic content.
+
+Production publication permissions are not required for local theme development.
+
+## Validation
 
 ```bash
 npm run check
@@ -36,53 +58,71 @@ npm run build
 npm run preview
 ```
 
-## Estructura
+## Repository structure
 
 ```text
 .
-├── docs/                     # research, branding, SEO, mockups and implementation docs
-├── public/                   # static assets copied without processing
-│   ├── favicon.svg
-│   └── robots.txt
+├── docs/
+│   ├── architecture/         # canonical technical contracts
+│   ├── brand/                # brand foundation and design system
+│   ├── content/              # content strategy
+│   ├── research/             # institutional research
+│   ├── seo/                  # competitor, keyword, and SEO architecture
+│   ├── sources/              # research sources
+│   ├── web/                  # implementation specification
+│   └── mockups/              # illustrative prototypes
+├── public/                   # static assets
 ├── src/
 │   ├── components/           # reusable UI components
-│   ├── config/               # site-wide verified configuration
-│   ├── layouts/              # shared page layouts
-│   ├── pages/                # Astro file-based routes
+│   ├── config/               # site configuration
+│   ├── layouts/              # shared Astro layouts
+│   ├── pages/                # route entry points
 │   └── styles/               # global design tokens and styles
 ├── astro.config.mjs
 ├── package.json
 └── tsconfig.json
 ```
 
-## Source of truth
+## Documentation source of truth
 
-Do not copy medical or historical information from legacy pages directly into production.
-
-Use the documents under `docs/` and validate time-sensitive data with the client first.
-
-Important documents:
+Start with:
 
 - `docs/README.md`
-- `docs/brand/brand-foundation.md`
-- `docs/brand/design-system.md`
-- `docs/research/institutional-research.md`
+- `docs/architecture/site-foundry-integration.md`
+- `docs/architecture/directus-content-model.md`
+- `docs/architecture/page-rendering-contract.md`
+- `docs/architecture/navigation-contract.md`
+- `docs/architecture/publishing-workflow.md`
 - `docs/web/implementation-brief.md`
-- `docs/open-questions.md`
 
-## Current routes
+Architecture contracts override mockups and older strategy examples when conflicts exist.
 
-- `/`
-- `/medicos/`
-- `/especialidades/`
-- `/servicios/`
-- `/pacientes/`
-- `/nosotros/`
-- `/emergencia/`
-- `/citas/`
-- custom `/404.html`
+## Canonical page families
 
-Most section routes are intentionally placeholders until the clinic validates the corresponding content.
+Initial canonical patterns:
+
+```text
+/                                      home
+/medicos/[slug]/                       doctor
+/especialidades/[slug]/                specialty
+/servicios/[slug]/                     service
+/servicios/[service]/[procedure]/      procedure when justified
+/pacientes/[slug]/                     patient information
+/emergencia/                           emergency
+/ubicaciones/[slug]/                   location
+/noticias/[slug]/                      article/news
+/nosotros/[slug]/                      institutional page
+/contacto/                             contact
+/en/...                                reviewed English equivalents
+```
+
+Do not create duplicate canonical pages for the same medical entity.
+
+## Current local routes
+
+The existing codebase can contain temporary section routes or placeholders during development.
+
+Do not treat a temporary route as canonical if it conflicts with the page-rendering contract.
 
 ## Design principles
 
@@ -92,22 +132,23 @@ Most section routes are intentionally placeholders until the clinic validates th
 - Minimal client-side JavaScript by default.
 - Reusable Astro components before page-specific duplication.
 - Stock media can illustrate concepts but must never impersonate clinic facilities.
-- Unverified medical, historical, insurance, staffing, or schedule claims must not ship.
+- Unverified medical, historical, insurance, staffing, schedule, or operational claims must not ship.
 
-## Brand tokens
+## Brand baseline
 
-The initial implementation uses the documented working palette:
+Working naming hierarchy:
 
-- Brugal Navy 900: `#0B2A6F`
-- Brugal Blue 700: `#123FA3`
-- Brugal Blue 600: `#1A56BF`
-- Brugal Blue 100: `#EAF1FF`
-- Clinical Blue: `#1A8DBB`
-- Clinical Ink: `#172033`
-- Soft White: `#F7F8FA`
+- canonical entity: **Melosa Clínica Brugal**;
+- short commercial expression: **Clínica Brugal**;
+- historical/alternate expression: **Clínica Brugal Mejía López**;
+- legal name: **MELOSA CLINICA BRUGAL SRL**.
 
-These are operational digital values until the client supplies an official historical/vector brand specification.
+The initial implementation uses documented working brand tokens.
+
+These remain operational digital values until the client provides an approved vector/manual specification.
 
 ## Provisional assets
 
-`public/favicon.svg` and the `MCB` header mark are placeholders. Replace them with the approved vector logo when the client provides it.
+The current favicon and any temporary initials-based header mark are placeholders.
+
+Replace them with approved vector brand assets when available.
